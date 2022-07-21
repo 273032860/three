@@ -29,29 +29,32 @@ import { useControls } from 'leva'
 import Physices1 from './components/Physics物理'
 import P from './components/P物理'
 import Shad from './components/Shad'
+import Huojian from './components/Huojian'
+import Huojianjsx from './components/Huojianjsx'
+import Dreitest from './components/Dreitest'
 
 function App () {
 
   // dat 数据
-  const [opts, setOpts] = useState({
-    geometry: 'BoxGeometry',
-    material: 'MeshStandardMaterial',
-    materialMap: false,
-    wireframe: false,
-    opacity: 1,
-    materialAlphaMap: false,
-    materialSide: false,
-    flatShading: false,
-    metalness: 0,
-    roughness: 0,
-    font: "Philosopher",
-    x: 0,
-    y: 0,
-    z: 0,
-    count: 100,
-    fontSize: 12,
-    color: "#99ccff",
-  })
+  // const [opts, setOpts] = useState({
+  //   geometry: 'BoxGeometry',
+  //   material: 'MeshStandardMaterial',
+  //   materialMap: false,
+  //   wireframe: false,
+  //   opacity: 1,
+  //   materialAlphaMap: false,
+  //   materialSide: false,
+  //   flatShading: false,
+  //   metalness: 0,
+  //   roughness: 0,
+  //   font: "Philosopher",
+  //   x: 0,
+  //   y: 0,
+  //   z: 0,
+  //   count: 100,
+  //   fontSize: 12,
+  //   color: "#99ccff",
+  // })
   //galaxy数据
   // const [opts, setOpts] = useState({
 
@@ -62,8 +65,18 @@ function App () {
   //   randomness:0.2,
   //   randompower:7
   // })
+//shad数据
+const [opts, setOpts] = useState({
 
-
+    uBig: 0.2,
+    color:'#186691',
+    ucolor:'#9bd8ff',
+    uBigx:4.0,
+    uBigy:1.5,
+    uspeed:0.8,
+    ucoloroffset:0.08,
+    ucolorM:5,
+  })
 
   const ref = useRef()
   const cref = useRef()
@@ -92,10 +105,10 @@ function App () {
 
   return (
     <div className='h-[100vh] bg-black' >
-      <h1 className='text-white'>  </h1>
+      <h1 className='text-white'> 12222 </h1>
       <button className='bg-white'   >+100</button>
 
-      <Canvas ref={ref} className='h-full'  >
+      <Canvas ref={ref} className='h-full'   >
 
         {/* <PerspectiveCamera  fov={75} position={[3, 4, 4]} /> */}
         {/* <mesh
@@ -106,7 +119,7 @@ function App () {
           <meshStandardMaterial color='red' />
         </mesh> */}
         {/* <Three/> */}
-        <OrbitControls />
+        {/* <OrbitControls /> */}
         <primitive object={new THREE.AxesHelper(10)} />
         {/* <C position={[-1.2, 0, 0]} ref={cref1}/>
         <C position={[1.2, 0, 0]} /> */}
@@ -122,16 +135,24 @@ function App () {
         {/* <Particles/> */}
 
         {/* <Test {...opts}/> */}
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={3.5} />
         {/* <Galaxy opts={opts} />  */}
         {/* <Galaxy2 opts={opts} /> */}
         {/* <Raycast/> */}
         {/* <Physices1 opts={opts} /> */}
         {/* <P   /> */}
-        <Shad />
+        {/* <Shad opts={opts}/> */}
+        {/* <Huojian  opts={opts}/> */}
+        {/* <Huojianjsx/> */}
+        <Dreitest opts={opts}/>
       </Canvas>
       <DatGui data={opts} onUpdate={setOpts}    >
-
+      <DatNumber path="uBig" min={0} max={1} step={0.001} />
+      <DatNumber path="uBigx" min={0} max={10} step={0.001} />
+      <DatNumber path="uBigy" min={0} max={10} step={0.001} />
+      <DatNumber path="uspeed" min={0.1} max={10} step={0.001} />
+      <DatNumber path="ucoloroffset" min={0} max={4} step={0.001} />
+      <DatNumber path="ucolorM" min={0} max={10} step={0.001} />
 
         {/* <DatNumber path="count" min={100} max={90000} step={10} />
         <DatNumber path="randius" min={1} max={30} step={1} />
@@ -167,6 +188,7 @@ function App () {
           options={["MeshBasicMaterial", "MeshPhongMaterial"]} */}
         {/* /> */}
         <DatColor path="color" />
+        <DatColor path="ucolor" />
       </DatGui>
 
     </div>

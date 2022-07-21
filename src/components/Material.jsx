@@ -3,6 +3,8 @@ import React, { useRef, useState } from 'react'
 import { Canvas, useFrame,useLoader } from '@react-three/fiber'
 import Snipaste from '../image/Snipaste.png'
 import * as THREE from 'three'
+
+
 function Material(props) {
   const mesh = useRef()
   const cref = useRef()
